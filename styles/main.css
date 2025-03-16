@@ -10,6 +10,8 @@ html {
     --bg-terminal: #2D2D2D;
     --border-color: rgba(78, 255, 145, 0.2);
     --terminal-header: rgba(78, 255, 145, 0.1);
+    --icon-filter: invert(var(--is-dark));
+    --icon-filter-hover: brightness(0.8) invert(var(--is-dark));
 }
 
 /* Tema claro */
@@ -19,6 +21,11 @@ body.light-theme {
     --bg-terminal: #ffffff;
     --border-color: rgba(0, 102, 204, 0.2);
     --terminal-header: rgba(0, 102, 204, 0.1);
+    --is-dark: 0;
+}
+
+body:not(.light-theme) {
+    --is-dark: 1;
 }
 
 body {
@@ -746,6 +753,8 @@ body:not(.light-theme) .contact-card {
     width: 24px;
     height: 24px;
     object-fit: contain;
+    filter: var(--icon-filter);
+    transition: filter 0.2s;
 }
 
 .social-text {
