@@ -1156,4 +1156,142 @@ body.light-theme .skill-card {
         width: 50px;
         height: 50px;
     }
+}
+
+/* Responsividade para Smartphones */
+@media (max-width: 480px) {
+    /* Terminal */
+    .terminal-window {
+        padding: 15px;
+        margin: 10px;
+        width: calc(100% - 20px);
+    }
+
+    /* Header */
+    header {
+        padding: 10px;
+    }
+
+    header nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* Seções */
+    .about-section,
+    .projects-section,
+    .contact-section {
+        padding: 40px 15px;
+    }
+
+    /* Cards */
+    .project-card,
+    .about-card,
+    .skill-card,
+    .contact-card {
+        padding: 15px;
+        margin: 10px 0;
+    }
+
+    /* Grids */
+    .projects-grid,
+    .skills-grid,
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    /* Texto */
+    .section-title {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .about-text {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    /* Tech Tags */
+    .tech-tags {
+        gap: 6px;
+    }
+
+    .tech-tag {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+
+    /* Modal */
+    .modal-content {
+        padding: 15px;
+        margin: 10px;
+    }
+
+    .modal-header h2 {
+        font-size: 20px;
+    }
+
+    /* Terminal Animação */
+    .terminal-top {
+        padding-top: 60px;
+    }
+
+    /* Tech Stack */
+    .tech-stack {
+        gap: 8px;
+    }
+
+    .tech-item {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    /* Botões */
+    .cv-button,
+    .cv-link {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    /* Social Links */
+    .social-link {
+        padding: 6px;
+    }
+
+    .social-link img {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Terminal Input */
+    #terminal-input {
+        font-size: 14px;
+    }
+
+    .terminal-input-area {
+        padding: 6px 10px;
+    }
+
+    /* Skill Icons */
+    .tech-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* About Card */
+    .about-container {
+        padding: 20px 15px;
+    }
+
+    /* Project Images */
+    .project-image {
+        height: 120px;
+    }
+
+    /* Modal Images */
+    .modal-image {
+        height: 180px;
+    }
 } 
