@@ -9,22 +9,38 @@
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body class="font-['Fira_Code']">
-    <!-- Header Fixo -->
-    <header class="fixed w-full backdrop-blur-sm border-b z-50">
-        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="text-xl">&lt;lenan.dev/&gt;</div>
-            <div class="flex items-center gap-6">
-                <a href="#terminal-inicio" class="hover:opacity-80 transition-colors">Início</a>
-                <a href="#sobre" class="hover:opacity-80 transition-colors">Sobre</a>
-                <a href="#projetos" class="hover:opacity-80 transition-colors">Projetos</a>
-                <a href="#habilidades" class="hover:opacity-80 transition-colors">Habilidades</a>
-                
-                <!-- Novo Switch de Tema -->
+    <!-- Header que fica fixo em cima -->
+    <header>
+        <nav>
+            <a href="#" class="nav-logo">&lt;lenan.dev/&gt;</a>
+            
+            <!-- Links de navegação -->
+            <div class="nav-links">
+                <a href="#sobre" class="nav-link">Sobre</a>
+                <a href="#projetos" class="nav-link">Projetos</a>
+                <a href="#habilidades" class="nav-link">Habilidades</a>
+                <a href="#contato" class="nav-link">Contato</a>
+                <!-- Switch de tema na versão web -->
                 <div class="theme-switch-wrapper">
                     <label class="theme-switch" for="checkbox">
                         <input type="checkbox" id="checkbox" />
                         <div class="slider"></div>
                     </label>
+                </div>
+            </div>
+
+            <!-- Versão mobile -->
+            <div class="nav-right">
+                <div class="theme-switch-wrapper">
+                    <label class="theme-switch" for="checkbox-mobile">
+                        <input type="checkbox" id="checkbox-mobile" />
+                        <div class="slider"></div>
+                    </label>
+                </div>
+                <div class="menu-mobile">
+                    <div></div>
+                    <div></div>
+                    <div></div>
                 </div>
             </div>
         </nav>
@@ -183,19 +199,19 @@
 
                 <!-- Card Redes Sociais -->
                 <div class="contact-card">
-                    <h3>Adicione nas redes</h3>
+                    <h3 class="text-lg font-semibold mb-4">redes</h3>
                     <div class="social-links">
-                        <a href="https://www.linkedin.com/in/leandronan/" target="_blank" class="social-link">
-                            <img src="assets/icons/linkedin.svg" alt="LinkedIn" />
-                            <span>/leandronan</span>
+                        <a href="https://www.linkedin.com/in/leandronan/" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <img src="./assets/icons/linkedin.png" alt="LinkedIn" class="social-icon" />
+                            <span class="social-text">/leandronan</span>
                         </a>
-                        <a href="https://github.com/L3Nan" target="_blank" class="social-link">
-                            <img src="assets/icons/github.svg" alt="GitHub" />
-                            <span>/L3Nan</span>
+                        <a href="https://github.com/L3Nan" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <img src="./assets/icons/github.png" alt="GitHub" class="social-icon" />
+                            <span class="social-text">/L3Nan</span>
                         </a>
-                        <a href="https://www.instagram.com/leandronan_/" target="_blank" class="social-link">
-                            <img src="assets/icons/instagram.svg" alt="Instagram" />
-                            <span>/leandronan_</span>
+                        <a href="https://www.instagram.com/leandronan_/" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <img src="./assets/icons/instagram.png" alt="Instagram" class="social-icon" />
+                            <span class="social-text">/leandronan_</span>
                         </a>
                     </div>
                 </div>

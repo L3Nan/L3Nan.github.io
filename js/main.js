@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const terminalInput = document.getElementById('terminal-input');
     const terminalInicio = document.getElementById('terminal-inicio');
     const mainContent = document.querySelectorAll('section:not(#terminal-inicio)');
+    const webSwitch = document.getElementById('checkbox');
+    const mobileSwitch = document.getElementById('checkbox-mobile');
+    let terminalStarted = false;
 
     // Esconder conteúdo inicialmente
     mainContent.forEach(section => section.style.display = 'none');
@@ -49,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Função para criar o efeito Matrix
+    // Função do efeito Matrix atualizada
     function createMatrixEffect() {
         const canvas = document.createElement('canvas');
         canvas.style.position = 'fixed';
@@ -57,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         canvas.style.left = '0';
         canvas.style.width = '100%';
         canvas.style.height = '100%';
-        canvas.style.zIndex = '-1'; // Colocando atrás do conteúdo
+        canvas.style.zIndex = '-1';
         canvas.style.pointerEvents = 'none';
         document.body.appendChild(canvas);
 
@@ -71,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
-        const characters = '01';
+        const characters = '01'; // Apenas 0 e 1
         const fontSize = 14;
         const columns = canvas.width / fontSize;
         const drops = [];
@@ -84,7 +87,10 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--text-primary');
+            // Cor baseada no tema
+            ctx.fillStyle = document.body.classList.contains('light-theme') ? 
+                '#0066ff' : // Azul neon para tema claro
+                '#0F0';     // Verde para tema escuro
             ctx.font = `${fontSize}px monospace`;
 
             for (let i = 0; i < drops.length; i++) {
@@ -104,16 +110,55 @@ document.addEventListener('DOMContentLoaded', () => {
         draw();
     }
 
+    // Theme Switch Logic
+    function handleThemeSwitch(e) {
+        if (e.target.checked) {
+            document.body.classList.add('light-theme');
+            localStorage.setItem('theme', 'light');
+        } else {
+            document.body.classList.remove('light-theme');
+            localStorage.setItem('theme', 'dark');
+        }
+        
+        // Sincroniza os switches
+        webSwitch.checked = e.target.checked;
+        mobileSwitch.checked = e.target.checked;
+        
+        // Só recria o Matrix se o terminal já foi iniciado
+        if (terminalStarted) {
+            const canvas = document.querySelector('canvas');
+            if (canvas) {
+                canvas.remove();
+                createMatrixEffect();
+            }
+        }
+    }
+
+    // Adiciona listeners para os switches
+    webSwitch.addEventListener('change', handleThemeSwitch);
+    mobileSwitch.addEventListener('change', handleThemeSwitch);
+
+    async function typeWriter(text) {
+        for (let char of text) {
+            terminalText.innerHTML += char;
+            await new Promise(resolve => setTimeout(resolve, 50));
+        }
+        terminalText.innerHTML += '<br>';
+    }
+
     terminalInput.addEventListener('keypress', async (e) => {
         if (e.key === 'Enter') {
             const command = terminalInput.value.trim().toLowerCase();
             
             if (command === 'start') {
+                // Remove o prompt e o input imediatamente
+                document.querySelector('.terminal-input-area').style.display = 'none';
+                document.querySelector('.prompt').style.display = 'none';
+                
                 // Iniciar efeito Matrix imediatamente
                 createMatrixEffect();
                 
                 terminalInput.disabled = true;
-                document.querySelector('.terminal-input-area').style.display = 'none';
 
                 const welcomeText = [
                     "const developer = {",
@@ -127,29 +172,37 @@ document.addEventListener('DOMContentLoaded', () => {
                     "// Bem-vindo ao meu portfólio!"
                 ];
 
-                terminalText.innerHTML = '';
+                terminalText.innerHTML = ''; // Limpa todo o conteúdo anterior
                 await typeText(welcomeText);
                 await new Promise(resolve => setTimeout(resolve, 1000));
                 moveTerminalAndShowContent();
-                
             } else if (command === 'pular') {
                 terminalInput.disabled = true;
                 document.querySelector('.terminal-input-area').style.display = 'none';
                 
-                terminalText.innerHTML = `
-                    <div>const developer = {</div>
-                    <div>    name: 'Lenan',</div>
-                    <div>    role: 'Desenvolvedor Web',</div>
-                    <div>    location: 'Brasil',</div>
-                    <div>    skills: ['HTML', 'CSS', 'JavaScript'],</div>
-                    <div>    interests: ['Web Development', 'UI/UX']</div>
-                    <div>};</div>
-                    <div></div>
-                    <div>// Bem-vindo ao meu portfólio!</div>
-                `;
+                terminalText.innerHTML = '';
                 
+                // Array com as linhas para digitar
+                const linesPular = [
+                    "const developer = {",
+                    "    name: 'Lenan',",
+                    "    role: 'Desenvolvedor Web',",
+                    "    location: 'Brasil',",
+                    "    skills: ['HTML', 'CSS', 'JavaScript'],",
+                    "    interests: ['Web Development', 'UI/UX']",
+                    "};",
+                    "",
+                    "// Bem-vindo ao meu portfólio!"
+                ];
+
+                // Digita cada linha com efeito
+                for (let line of linesPular) {
+                    await typeWriter(line);
+                }
+
                 moveTerminalAndShowContent();
             }
+            terminalInput.value = '';
         }
     });
 
@@ -158,32 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!terminalInput.disabled) {
             setTimeout(() => terminalInput.focus(), 100);
         }
-    });
-
-    // Atualize a parte do toggle de tema
-    const toggleSwitch = document.querySelector('#checkbox');
-    
-    // Verifica tema salvo
-    const currentTheme = localStorage.getItem('theme');
-    if (currentTheme) {
-        document.body.classList[currentTheme === 'light' ? 'add' : 'remove']('light-theme');
-        toggleSwitch.checked = currentTheme === 'light';
-    }
-
-    // Handler para mudança de tema
-    toggleSwitch.addEventListener('change', function(e) {
-        if (e.target.checked) {
-            document.body.classList.add('light-theme');
-            localStorage.setItem('theme', 'light');
-        } else {
-            document.body.classList.remove('light-theme');
-            localStorage.setItem('theme', 'dark');
-        }
-        // Remover o canvas anterior se existir
-        const oldCanvas = document.querySelector('canvas');
-        if (oldCanvas) oldCanvas.remove();
-        // Criar novo efeito Matrix com a nova cor do tema
-        createMatrixEffect();
     });
 
     // Seleciona todos os cards de projeto
@@ -209,11 +236,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Mostrar conteúdo
         mainContent.forEach(section => {
             section.style.display = 'block';
-            section.style.opacity = '0';
-            requestAnimationFrame(() => {
-                section.style.transition = 'opacity 0.8s ease';
+            setTimeout(() => {
                 section.style.opacity = '1';
-            });
+            }, 100);
         });
     }
 

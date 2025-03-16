@@ -4,8 +4,8 @@ html {
 }
 
 :root {
-    /* Cores para modo escuro (padrão) */
-    --text-primary: #4eff91; /* Verde neon mais suave */
+    /* Cores que uso no modo escuro (padrão) */
+    --text-primary: #4eff91; /* Verde neon mais suave que não machuca os olhos */
     --bg-primary: #1E1E1E;
     --bg-terminal: #2D2D2D;
     --border-color: rgba(78, 255, 145, 0.2);
@@ -14,8 +14,8 @@ html {
 
 /* Tema claro */
 body.light-theme {
-    --text-primary: #0066cc; /* Azul neon mais escuro */
-    --bg-primary: #f0f2f5; /* Cinza claro */
+    --text-primary: #0066cc; /* Azul mais escuro pra contrastar melhor */
+    --bg-primary: #f0f2f5;
     --bg-terminal: #ffffff;
     --border-color: rgba(0, 102, 204, 0.2);
     --terminal-header: rgba(0, 102, 204, 0.1);
@@ -89,36 +89,162 @@ body.light-theme .terminal-window:hover {
 
 /* Atualizar header para os temas */
 header {
-    background-color: rgba(30, 30, 30, 0.8); /* Fundo escuro com transparência */
-    border-color: var(--border-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background-color: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 1000;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    z-index: 40; /* Mantém o header acima do conteúdo mas permite ver o efeito */
 }
 
-/* Ajuste para o tema claro */
-body.light-theme header {
-    background-color: rgba(240, 242, 245, 0.8); /* Fundo claro com transparência */
+header nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
 }
 
-/* Ajuste nos links do header para melhor legibilidade */
-header a {
+.nav-logo {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.nav-right {
+    display: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
     position: relative;
-    z-index: 41;
-    text-shadow: 0 0 10px var(--bg-primary);
 }
 
-/* Ajuste no logo do header */
-header .text-xl {
-    position: relative;
-    z-index: 41;
-    text-shadow: 0 0 10px var(--bg-primary);
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--text-primary);
+    transition: width 0.3s ease;
 }
 
-/* Ajuste no switch de tema */
-.theme-switch-wrapper {
-    position: relative;
-    z-index: 41;
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Menu Mobile - Inicialmente oculto */
+.menu-mobile {
+    display: none;
+}
+
+/* Regras específicas para smartphones */
+@media (max-width: 768px) {
+    /* Esconde navegação original */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 70%;
+        background-color: var(--bg-terminal);
+        flex-direction: column;
+        justify-content: center;
+        gap: 2rem;
+        transition: right 0.3s ease;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        z-index: 1000;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    /* Mostra elementos mobile */
+    .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        order: 2;
+    }
+
+    .menu-mobile {
+        display: block;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    .menu-mobile div {
+        width: 25px;
+        height: 2px;
+        background-color: var(--text-primary);
+        margin: 5px 0;
+        transition: all 0.3s ease;
+    }
+
+    /* Animação do menu hamburger */
+    .menu-mobile.active div:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .menu-mobile.active div:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-mobile.active div:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    /* Ajustes do header mobile */
+    header nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem;
+    }
+
+    .nav-logo {
+        font-size: 1.1rem;
+        order: 1;
+    }
+
+    .theme-switch-wrapper {
+        order: 2;
+        margin-right: 1rem;
+    }
+}
+
+/* Ajustes para telas muito pequenas */
+@media (max-width: 480px) {
+    header nav {
+        padding: 0.5rem;
+    }
+
+    .nav-logo {
+        font-size: 1rem;
+    }
+
+    .nav-links {
+        width: 85%;
+    }
 }
 
 /* Terminal Text Animation */
@@ -259,41 +385,44 @@ input:focus, textarea:focus {
 .theme-switch-wrapper {
     display: flex;
     align-items: center;
+    margin-left: 2rem;
 }
 
 .theme-switch {
-    display: inline-block;
-    height: 28px;
     position: relative;
-    width: 54px;
+    width: 50px;
+    height: 24px;
+    margin: 0;
 }
 
 .theme-switch input {
-    display: none;
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
 
 .slider {
-    background-color: var(--bg-terminal);
-    border: 2px solid var(--text-primary);
-    bottom: 0;
-    cursor: pointer;
-    left: 0;
     position: absolute;
-    right: 0;
+    cursor: pointer;
     top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--bg-terminal);
+    border: 1px solid var(--text-primary);
     transition: .4s;
-    border-radius: 34px;
+    border-radius: 24px;
 }
 
 .slider:before {
-    background-color: var(--text-primary);
-    bottom: 2px;
-    content: "";
-    height: 20px;
-    left: 3px;
     position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 3px;
+    background-color: var(--text-primary);
     transition: .4s;
-    width: 20px;
     border-radius: 50%;
 }
 
@@ -576,16 +705,21 @@ body:not(.light-theme) .modal-content {
 
 /* Cards de Contato */
 .contact-card {
-    background-color: white;
+    background-color: var(--bg-terminal);
     border-radius: 16px;
     padding: 24px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    border: 1px solid transparent;
+    border: 1px solid var(--border-color);
 }
 
 body:not(.light-theme) .contact-card {
     background-color: var(--bg-terminal);
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
 }
 
 .contact-card h3 {
@@ -599,55 +733,59 @@ body:not(.light-theme) .contact-card {
     font-size: 1rem;
 }
 
-/* Links de Redes Sociais */
+/* Estilo para os links sociais */
 .social-links {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 1rem;
+    margin: 1rem 0;
 }
 
 .social-link {
     display: flex;
     align-items: center;
-    gap: 12px;
-    color: #64748b;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    padding: 8px;
+    gap: 0.75rem;
+    padding: 0.75rem;
     border-radius: 8px;
+    background: var(--bg-terminal);
+    transition: all 0.3s ease;
+    color: var(--text-primary);
+    text-decoration: none;
 }
 
 .social-link:hover {
-    color: var(--text-primary);
-    background-color: rgba(78, 255, 145, 0.1);
+    transform: translateX(5px);
+    background: var(--terminal-header);
 }
 
-.social-link img {
+.social-icon {
     width: 24px;
     height: 24px;
+    object-fit: contain;
 }
 
-/* Efeitos de hover nos cards */
-.contact-card:hover {
-    transform: translateY(-4px);
+.social-text {
+    font-size: 0.9rem;
 }
 
-/* Efeito no tema claro - azul */
-body.light-theme .contact-card:hover {
-    border-color: var(--text-primary);
-    box-shadow: 0 0 15px rgba(0, 102, 204, 0.3);
-}
-
-/* Efeito no tema escuro - verde */
-.contact-card:hover {
-    border-color: var(--text-primary);
-    box-shadow: 0 0 15px rgba(78, 255, 145, 0.3);
+.credits-text {
+    color: var(--text-primary);
+    opacity: 0.7;
 }
 
 /* Responsividade */
-@media (max-width: 768px) {
-    .contact-card {
-        padding: 20px;
+@media (max-width: 480px) {
+    .social-icon {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .social-link {
+        padding: 0.5rem;
+    }
+    
+    .social-text {
+        font-size: 0.8rem;
     }
 }
 
@@ -1294,4 +1432,26 @@ body.light-theme .skill-card {
     .modal-image {
         height: 180px;
     }
+}
+
+/* Terminal inicial */
+#terminal-inicio {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease;
+}
+
+/* Terminal movido para o topo */
+.terminal-top {
+    min-height: auto !important;
+    margin-top: 2rem;
+}
+
+/* Conteúdo inicialmente oculto */
+section:not(#terminal-inicio) {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
 } 
