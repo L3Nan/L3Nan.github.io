@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lenan.dev - Portfólio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body class="font-['Fira_Code']">
+    <!-- Header Fixo -->
+    <header class="fixed w-full backdrop-blur-sm border-b z-50">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-xl">&lt;lenan.dev/&gt;</div>
+            <div class="flex items-center gap-6">
+                <a href="#terminal-inicio" class="hover:opacity-80 transition-colors">Início</a>
+                <a href="#sobre" class="hover:opacity-80 transition-colors">Sobre</a>
+                <a href="#projetos" class="hover:opacity-80 transition-colors">Projetos</a>
+                <a href="#habilidades" class="hover:opacity-80 transition-colors">Habilidades</a>
+                
+                <!-- Novo Switch de Tema -->
+                <div class="theme-switch-wrapper">
+                    <label class="theme-switch" for="checkbox">
+                        <input type="checkbox" id="checkbox" />
+                        <div class="slider"></div>
+                    </label>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Seção Principal -->
+    <main class="container mx-auto px-4">
+        <!-- Terminal Inicial -->
+        <section id="terminal-inicio" class="terminal-section">
+            <div class="terminal-window">
+                <div id="terminal-text"></div>
+                <div class="terminal-input-area">
+                    <span class="prompt">$</span>
+                    <input type="text" id="terminal-input" placeholder="Digite 'start' para continuar..." autocomplete="off">
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Sobre -->
+        <section id="sobre" class="py-20">
+            <h2 class="text-2xl mb-10">&lt;Sobre/&gt;</h2>
+            <div class="grid grid-cols-1 gap-8">
+                <div class="about-card">
+                    <p class="text-lg mb-6">
+                        Sou <strong>Leandro Daniel</strong>, desenvolvedor web focado em criar experiências digitais fluidas e funcionais.
+                    </p>
+                    <p class="text-lg mb-6">
+                        Com domínio de tecnologias modernas, busco unir estética, desempenho e eficiência no desenvolvimento de aplicações.
+                    </p>
+                    
+                    <div class="tech-grid">
+                        <span class="tech-badge">JavaScript</span>
+                        <span class="tech-badge">CSS</span>
+                        <span class="tech-badge">Tailwind CSS</span>
+                        <span class="tech-badge">HTML</span>
+                        <span class="tech-badge">React.js</span>
+                        <span class="tech-badge">Next.js</span>
+                        <span class="tech-badge">TypeScript</span>
+                        <span class="tech-badge">Node.js</span>
+                    </div>
+
+                    <p class="text-lg mt-6">
+                        Desenvolvo soluções digitais com foco em performance, usabilidade e design inteligente, transformando ideias em produtos eficientes e escaláveis.
+                    </p>
+
+                    <a href="/assets/cv.pdf" class="cv-link" download>
+                        Baixar o CV para saber mais
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Projetos -->
+        <section id="projetos" class="projects-section">
+            <h2>&lt;Projetos/&gt;</h2>
+            <div class="projects-grid">
+                <!-- Card Projeto 1 - CompraInversa -->
+                <div class="project-card">
+                    <div class="project-image"></div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Tailwind</span>
+                        <span class="tech-tag">Next.js</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                    </div>
+                    <h2>CompraInversa</h2>
+                    <p>Uma plataforma inovadora para compras empresariais estratégicas. Conectando empresas a fornecedores de forma eficiente.</p>
+                    <div class="features">
+                        <p class="features-title">📌 Funcionalidades principais:</p>
+                        <ul>
+                            <li>Leilões reversos para negociação de preços</li>
+                            <li>Integração com fornecedores e compradores</li>
+                            <li>Gestão de pedidos e cotações</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card Projeto 2 - Em breve -->
+                <div class="project-card">
+                    <div class="project-image"></div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Em breve</span>
+                    </div>
+                    <h2>Em desenvolvimento</h2>
+                    <p>Novo projeto em desenvolvimento. Em breve mais informações.</p>
+                    <div class="features">
+                        <p class="features-title">📌 Funcionalidades principais:</p>
+                        <ul>
+                            <li>Em planejamento</li>
+                            <li>Em desenvolvimento</li>
+                            <li>Em breve</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card Projeto 3 - Em breve -->
+                <div class="project-card">
+                    <div class="project-image"></div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Em breve</span>
+                    </div>
+                    <h2>Em desenvolvimento</h2>
+                    <p>Novo projeto em desenvolvimento. Em breve mais informações.</p>
+                    <div class="features">
+                        <p class="features-title">📌 Funcionalidades principais:</p>
+                        <ul>
+                            <li>Em planejamento</li>
+                            <li>Em desenvolvimento</li>
+                            <li>Em breve</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Habilidades -->
+        <section id="habilidades" class="py-20">
+            <h2 class="text-2xl mb-10">&lt;Habilidades/&gt;</h2>
+            <div class="skills-grid">
+                <!-- Card HTML, CSS e JavaScript -->
+                <div class="skill-card">
+                    <h3 class="skill-title">HTML, CSS e JavaScript</h3>
+                    <p class="skill-description">
+                        HTML, CSS e JavaScript, também conhecidos como tecnologias base da web, formam o tripé principal conjunto de tecnologias para desenvolver aplicações web.
+                    </p>
+                    <div class="skill-icon">
+                        <img src="assets/icons/html-css-js.svg" alt="HTML, CSS, JS" class="tech-icon">
+                    </div>
+                </div>
+
+                <!-- Card React -->
+                <div class="skill-card">
+                    <h3 class="skill-title">React JS</h3>
+                    <p class="skill-description">
+                        O React é uma biblioteca JavaScript atualizada, eficiente e flexível para criar interfaces. Ele permite compor UIs complexas a partir de pequenos e isolados códigos chamados "componentes".
+                    </p>
+                    <div class="skill-icon">
+                        <img src="assets/icons/react.svg" alt="React" class="tech-icon">
+                    </div>
+                </div>
+
+                <!-- Adicione mais cards de habilidades conforme necessário -->
+            </div>
+        </section>
+
+        <!-- Seção de Contato -->
+        <section id="contato" class="contact-section">
+            <h2>&lt;Contato/&gt;</h2>
+            <div class="contact-grid">
+                <!-- Card Email -->
+                <div class="contact-card">
+                    <h3>E-mail para contato</h3>
+                    <p class="contact-info">leandronan@gmail.com</p>
+                </div>
+
+                <!-- Card Redes Sociais -->
+                <div class="contact-card">
+                    <h3>Adicione nas redes</h3>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/leandronan/" target="_blank" class="social-link">
+                            <img src="assets/icons/linkedin.svg" alt="LinkedIn" />
+                            <span>/leandronan</span>
+                        </a>
+                        <a href="https://github.com/L3Nan" target="_blank" class="social-link">
+                            <img src="assets/icons/github.svg" alt="GitHub" />
+                            <span>/L3Nan</span>
+                        </a>
+                        <a href="https://www.instagram.com/leandronan_/" target="_blank" class="social-link">
+                            <img src="assets/icons/instagram.svg" alt="Instagram" />
+                            <span>/leandronan_</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 
