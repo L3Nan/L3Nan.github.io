@@ -247,9 +247,17 @@ document.addEventListener('DOMContentLoaded', () => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({ behavior: 'smooth' });
+            
+            // Se for o logo (href="#"), scroll para o terminal
+            if (targetId === '#') {
+                const terminalInicio = document.getElementById('terminal-inicio');
+                terminalInicio.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                // Para outros links, mantém o comportamento original
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
             }
         });
     });
