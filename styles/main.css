@@ -92,29 +92,26 @@ header {
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    padding: 1rem;
+    width: 100%;
     background-color: var(--bg-primary);
+    padding: 1rem;
+    z-index: 1000; /* Aumentar o z-index para ficar acima do Matrix */
     border-bottom: 1px solid var(--border-color);
-    z-index: 1000;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
 }
 
-header nav {
-    max-width: 1200px;
-    margin: 0 auto;
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .nav-logo {
-    font-size: 1.25rem;
-    font-weight: 600;
     color: var(--text-primary);
     text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 500;
 }
 
 .nav-right {
@@ -123,31 +120,18 @@ header nav {
 
 .nav-links {
     display: flex;
-    gap: 2rem;
     align-items: center;
+    gap: 2rem;
 }
 
 .nav-link {
     color: var(--text-primary);
     text-decoration: none;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    position: relative;
+    transition: color 0.3s ease;
 }
 
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--text-primary);
-    transition: width 0.3s ease;
-}
-
-.nav-link:hover::after {
-    width: 100%;
+.nav-link:hover {
+    color: var(--accent-color);
 }
 
 /* Menu Mobile - Inicialmente oculto */
@@ -1454,4 +1438,15 @@ section:not(#terminal-inicio) {
     display: none;
     opacity: 0;
     transition: opacity 0.5s ease;
+}
+
+/* Ajuste para o efeito Matrix */
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Garantir que o Matrix fique atrás de tudo */
+    pointer-events: none;
 } 
