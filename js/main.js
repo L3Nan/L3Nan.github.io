@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Diminua os números para aumentar a velocidade
             // Math.random() * 80 + 30 -> velocidade atual (entre 30ms e 110ms por caractere)
             // Para mais rápido, tente por exemplo: Math.random() * 40 + 20 (entre 20ms e 60ms)
-            await new Promise(resolve => setTimeout(resolve, Math.random() * 30 + 110));
+            await new Promise(resolve => setTimeout(resolve, Math.random() * 40 + 20));
         }
     }
 
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Diminua para ter menos pausa entre as linhas
             // 300ms -> tempo atual
             // Para mais rápido, tente 150ms
-            await new Promise(resolve => setTimeout(resolve, 100));
+            await new Promise(resolve => setTimeout(resolve, 150));
         }
     }
 
