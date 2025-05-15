@@ -1601,20 +1601,4 @@ canvas {
     height: 100%;
     z-index: -1; /* Garantir que o Matrix fique atrás de tudo */
     pointer-events: none;
-}
-
-.tech-badges {
-    display: flex;
-    gap: 1rem;
-    margin: 2rem 0;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.tech-badge {
-    transition: transform 0.3s ease;
-}
-
-.tech-badge:hover {
-    transform: translateY(-5px);
 } 
