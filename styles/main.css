@@ -248,9 +248,6 @@ body.light-theme {
     overflow: hidden;
     backdrop-filter: blur(8px);
     transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .terminal-window::before {
@@ -392,12 +389,8 @@ body.light-theme .terminal-window:hover {
 
 /* Terminal Text Animation */
 #terminal-text {
-    font-family: 'Fira Code', monospace;
+    margin-top: 20px;
     line-height: 1.6;
-    margin-bottom: 10px;
-    width: 100%;
-    max-width: 500px;
-    text-align: center;
 }
 
 #terminal-text::after {
@@ -1072,9 +1065,6 @@ body.light-theme .tech-item:hover {
     background: rgba(78, 255, 145, 0.05);
     border-radius: 6px;
     border: 1px solid rgba(78, 255, 145, 0.1);
-    width: 100%;
-    max-width: 500px;
-    justify-content: center;
 }
 
 .prompt {
@@ -1611,4 +1601,20 @@ canvas {
     height: 100%;
     z-index: -1; /* Garantir que o Matrix fique atrás de tudo */
     pointer-events: none;
+}
+
+.tech-badges {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.tech-badge {
+    transition: transform 0.3s ease;
+}
+
+.tech-badge:hover {
+    transform: translateY(-5px);
 } 
